@@ -1,59 +1,56 @@
 # Mouse Mover 🖱️
 
-Um utilitário simples e eficiente desenvolvido em Java para manter o computador ativo. Ele simula o movimento físico do mouse, impedindo que o sistema operacional bloqueie a tela ou entre em modo de suspensão/hibernação devido à inatividade.
+Um utilitário simples, leve e eficiente desenvolvido em Java para manter o computador sempre ativo. Ele simula o movimento físico do cursor na tela, impedindo que o sistema operacional bloqueie o usuário ou entre em modo de suspensão/hibernação por inatividade.
 
 ---
 
 ## 🚀 Como Funciona?
 
-O programa utiliza a classe `java.awt.Robot` para interagir diretamente com a interface do sistema. 
+O programa utiliza recursos nativos do Java (`java.awt.Robot` e `javax.swing`) sem a necessidade de nenhuma biblioteca externa:
 
-1. Você define o **tempo de execução** (em segundos).
-2. O cursor do mouse começa a se mover suavemente para a esquerda e para a direita (cerca de 5 cm de distância) no centro da tela.
-3. O terminal exibe em tempo real o progresso (ciclos concluídos) e o tempo restante.
-4. O programa encerra automaticamente ao fim do tempo ou caso você decida interrompê-lo.
+1. **Alerta de Inicialização:** Ao executar, uma mensagem amigável é exibida explicando o funcionamento e solicitando a confirmação do usuário.
+2. **Janela de Controle Flutuante:** Uma pequena janela fica visível na tela mostrando o status e o tempo total de atividade.
+3. **Movimento com Intervalo Inteligente:** O cursor faz um deslocamento suave de 5 cm no centro da tela e depois **aguarda 5 segundos de pausa** antes do próximo movimento. Isso evita que você precise "lutar" contra o mouse para usá-lo.
+4. **Encerramento Fácil e Imediato:** Para parar o movimento a qualquer momento, você pode:
+   - Pressionar a tecla **ESC** no teclado;
+   - Clicar no botão vermelho **"⏹️ Parar Movimento (ESC)"**;
+   - Ou simplesmente fechar a janela no botão **X**.
 
 ---
 
 ## ⚙️ Funcionalidades
 
-- **Movimento Suave:** Diferente de outros scripts que apenas "teletransportam" o ponteiro, este utilitário move o cursor pixel por pixel, simulando um movimento natural.
-- **Interrupção Fácil e Segura:** Pare o movimento instantaneamente a qualquer momento pressionando:
-  - `ESC` no seu teclado.
-  - `ENTER` no terminal.
-  - `Ctrl + F2` (se estiver executando no Eclipse).
-- **Feedback em Tempo Real:** Mostra quantos ciclos foram completados e quanto tempo resta para terminar.
+- **Interface Gráfica Nativa:** Não requer console nem IDE para ser utilizado.
+- **Alerta Prévio:** Pergunta e orienta o usuário antes de começar qualquer movimentação.
+- **Janela Sempre Visível (*Always-on-Top*):** A janela de controle não se perde atrás de outras aplicações, facilitando a parada.
+- **Movimento Suave:** Move o cursor pixel a pixel, simulando uma interação natural.
 
 ---
 
 ## 🛠️ Tecnologias Utilizadas
 
 - **Linguagem:** Java 8 ou superior
-- **Bibliotecas Nativas:** `java.awt.Robot` e `java.awt.Toolkit` (para obter as dimensões da tela e controlar o mouse)
+- **Bibliotecas Nativas:** `java.awt.Robot`, `java.awt.Toolkit` e `javax.swing.*`
 
 ---
 
 ## 📋 Pré-requisitos
 
-Para executar este projeto, você precisa ter instalado no seu computador:
-- Java Development Kit (JDK) instalado e configurado nas variáveis de ambiente.
+- Java Runtime Environment (JRE) ou Java Development Kit (JDK) 8+ instalado.
 
 ---
 
 ## 🏃 Como Executar
 
-### Via IDE (Eclipse, VS Code, IntelliJ, etc.)
-1. Importe o projeto para a sua IDE favorita.
-2. Execute a classe `br.com.mousemover.principal.MouseMover`.
-3. Insira o tempo de execução desejado no console e acompanhe.
+### Via Arquivo Executável / IDE
+Basta executar a classe `br.com.mousemover.principal.MouseMover` ou dar um duplo clique caso tenha gerado o executável `.jar`.
 
 ### Via Terminal
-1. Navegue até o diretório raiz do projeto.
-2. Compile a classe:
+1. Compile a aplicação:
    ```bash
    javac -d bin src/br/com/mousemover/principal/MouseMover.java
    ```
-3. Execute o programa:
+2. Execute o programa:
    ```bash
    java -cp bin br.com.mousemover.principal.MouseMover
    ```
@@ -61,4 +58,4 @@ Para executar este projeto, você precisa ter instalado no seu computador:
 ---
 
 ## ⚠️ Observações de Permissão
-Em alguns sistemas operacionais (como macOS ou Linux), pode ser necessário dar permissões de acessibilidade ao Java ou ao Terminal para que o controle do cursor funcione corretamente. Se encontrar problemas, verifique as configurações de segurança do seu sistema.
+Em sistemas como macOS ou Linux, pode ser necessário conceder permissão de **Acessibilidade** ao Java para permitir o controle do ponteiro do mouse.
